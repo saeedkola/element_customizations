@@ -10,7 +10,7 @@ class QuickExpenseEntries(Document):
 	def validate(self):
 		pass
 
-	def on_submit(self):
+	def before_submit(self):
 		if (self.description):
 			item_name = self.description
 		else: 
@@ -22,7 +22,7 @@ class QuickExpenseEntries(Document):
 			"is_paid"	: 1,
 			"cash_bank_account"	: self.paid_from,
 			"items": [{
-				"item_name" : self.description,
+				"item_name" : item_name,
 				"uom"		: "Nos",
 				"qty"		: 1,
 				"rate"		: self.amount,

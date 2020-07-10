@@ -11,8 +11,8 @@
   "description",
   "amount",
   "paid_from",
-  "amended_from",
-  "purchase_invoice"
+  "purchase_invoice",
+  "amended_from"
  ],
  "fields": [
   {
@@ -63,7 +63,7 @@
   },
   {
    "fieldname": "purchase_invoice",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Linked Purchase Invoice",
    "options": "Purchase Invoice",
    "read_only": 1
@@ -75,7 +75,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2020-07-09 15:09:14.769190",
+ "modified": "2020-07-10 16:02:13.535486",
  "modified_by": "Administrator",
  "module": "Element Customizations",
  "name": "Quick Expense Entries",

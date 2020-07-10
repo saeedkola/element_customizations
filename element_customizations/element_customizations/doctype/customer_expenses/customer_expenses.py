@@ -54,13 +54,15 @@ class CustomerExpenses(Document):
 		self.sales_invoice = sinv.name
 
 	def on_cancel(self):
-		pinv = frappe.get_doc('Purchase Invoice',self.purchase_invoice)
-		pinv.docstatus = 2
-		pinv.save()
+		if self.purchase_invoice:
+			pinv = frappe.get_doc('Purchase Invoice',self.purchase_invoice)
+			pinv.docstatus = 2
+			pinv.save()
 
-		sinv = frappe.get_doc('Sales Invoice',self.sales_invoice)
-		sinv.docstatus = 2
-		sinv.save()
+		if self.sales_invoice:
+			sinv = frappe.get_doc('Sales Invoice',self.sales_invoice)
+			sinv.docstatus = 2
+			sinv.save()
 		
 	def on_trash(self):
 		pi = self.purchase_invoice

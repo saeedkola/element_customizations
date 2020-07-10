@@ -37,9 +37,10 @@ class QuickExpenseEntries(Document):
 		self.purchase_invoice = doc.name
 
 	def on_cancel(self):
-		pinv = frappe.get_doc('Purchase Invoice',self.purchase_invoice)
-		pinv.docstatus = 2
-		pinv.save()
+		if self.purchase_invoice:
+			pinv = frappe.get_doc('Purchase Invoice',self.purchase_invoice)
+			pinv.docstatus = 2
+			pinv.save()
 
 		
 	def on_trash(self):

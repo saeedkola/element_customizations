@@ -44,9 +44,7 @@ class QuickExpenseEntries(Document):
 
 		
 	def on_trash(self):
-		pi = self.purchase_invoice
-		self.purchase_invoice = ""	
-		frappe.get_doc('Purchase Invoice',pi).delete()
-
-
-
+		if self.purchase_invoice:
+			pi = self.purchase_invoice
+			self.purchase_invoice = ""	
+			frappe.get_doc('Purchase Invoice',pi).delete()

@@ -65,9 +65,12 @@ class CustomerExpenses(Document):
 			sinv.save()
 		
 	def on_trash(self):
-		pi = self.purchase_invoice
-		si = self.sales_invoice
-		self.purchase_invoice = ""
-		self.sales_invoice = ""		
-		frappe.get_doc('Purchase Invoice',pi).delete()
-		frappe.get_doc('Sales Invoice',si).delete()
+		if self.purchase_invoice:
+			pi = self.purchase_invoice
+			self.purchase_invoice = ""
+			frappe.get_doc('Purchase Invoice',pi).delete()
+		
+		if self.sales_invoice: 
+			si = self.sales_invoice	
+			self.sales_invoice = ""
+			frappe.get_doc('Sales Invoice',si).delete()

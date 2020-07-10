@@ -9,7 +9,7 @@ frappe.ui.form.on('Customer Expenses', {
 		frm.set_query("expense_head",function(){
 			return {
 				filters:[
-					// ["Account", "account_type", "in",["Expense Account"]],
+					["Account", "account_type", "not in",["Expense Account"]],
 					["Account", "is_group", "=", 0]
 				]
 			}
@@ -17,7 +17,7 @@ frappe.ui.form.on('Customer Expenses', {
 		frm.set_query("paid_from",function(){
 			return {
 				filters :[
-					["Account", "account_type", "in",["Bank", "Cash"]],
+					["Account", "root_type", "in",["Expense"]],
 					["Account", "is_group", "=", 0]	
 				]
 			}

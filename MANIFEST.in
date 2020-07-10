@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include element_customizations *.css
+recursive-include element_customizations *.csv
+recursive-include element_customizations *.html
+recursive-include element_customizations *.ico
+recursive-include element_customizations *.js
+recursive-include element_customizations *.json
+recursive-include element_customizations *.md
+recursive-include element_customizations *.png
+recursive-include element_customizations *.py
+recursive-include element_customizations *.svg
+recursive-include element_customizations *.txt
+recursive-exclude element_customizations *.pyc

@@ -9,7 +9,7 @@ frappe.ui.form.on('Quick Expense Entries', {
 		frm.set_query("expense_head",function(){
 			return {
 				filters:[
-					// ["Account", "account_type", "in",["Expense Account"]],
+					["Account", "root_type", "in",["Expense"]],
 					["Account", "is_group", "=", 0]
 				]
 			}

@@ -18,7 +18,7 @@ frappe.ui.form.on('Element Customizations Settings', {
 		frm.set_query("ce_cash_bank_account",function(){
 			return {
 				filters :[
-					["Account", "root_type", "in",["Expense"]],
+					["Account", "account_type", "in",["Bank", "Cash"]],
 					["Account", "is_group", "=", 0]	
 				]
 			}

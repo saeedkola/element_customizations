@@ -12,9 +12,10 @@ class QuickExpenseEntries(Document):
 
 	def before_submit(self):
 		if (self.description):
-			item_name = self.description
+			remarks = item_name = self.description
 		else: 
 			item_name = self.expense_head
+			remarks = "No Remarks"
 
 		doc = frappe.get_doc({
 			"doctype" 	: "Purchase Invoice",
@@ -28,7 +29,8 @@ class QuickExpenseEntries(Document):
 				"rate"		: self.amount,
 				"expense_account": self.expense_head,
 				"project"	: self.project
-			}]
+			}],
+			"remarks":  remarks
 		})
 
 		doc.save()

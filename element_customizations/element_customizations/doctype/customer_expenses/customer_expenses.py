@@ -10,9 +10,10 @@ class CustomerExpenses(Document):
 
 	def before_submit(self):
 		if (self.description):
-			item_name = self.description
+			remarks = item_name = self.description
 		else: 
 			item_name = self.expense_head
+			remarks = "No remarks"
 
 		pinv = frappe.get_doc({
 			"doctype" 	: "Purchase Invoice",
@@ -26,7 +27,8 @@ class CustomerExpenses(Document):
 				"rate"		: self.amount,
 				"expense_account": self.expense_head,
 				"project"	: self.project
-			}]
+			}],
+			"remarks" : remarks
 		})
 
 		pinv.save()
@@ -44,7 +46,8 @@ class CustomerExpenses(Document):
 				"rate"		: self.amount,
 				"income_account": self.expense_head,
 				"project"	: self.project
-			}]
+			}],
+			remarks: "remarks"
 		})
 
 		sinv.save()

@@ -12,12 +12,15 @@ class QuickExpenseEntries(Document):
 
 	def before_submit(self):
 		if (self.description):
-			remarks = item_name = self.description
+			item_name = self.expense_head
+			remarks = self.description
 		else: 
 			item_name = self.expense_head
 			remarks = "No Remarks"
 
 		doc = frappe.get_doc({
+			"set_posting_time": 1,
+			"posting_date" : self.posting_date,
 			"doctype" 	: "Purchase Invoice",
 			"supplier"	: self.supplier,
 			"is_paid"	: 1,

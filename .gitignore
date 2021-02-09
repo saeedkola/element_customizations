@@ -4,3 +4,4 @@
 *.swp
 tags
 element_customizations/docs/current
+sftp-config.json

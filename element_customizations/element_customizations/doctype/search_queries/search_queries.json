@@ -1,0 +1,32 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-10 16:05:39.551177",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "search_query"
+ ],
+ "fields": [
+  {
+   "fieldname": "search_query",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Search Query",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-06-10 16:05:39.551177",
+ "modified_by": "Administrator",
+ "module": "Element Customizations",
+ "name": "Search Queries",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

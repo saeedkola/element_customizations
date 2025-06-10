@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2025-06-10 16:03:30.822452",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "payment_type",
+  "bank_account",
+  "paid_from",
+  "from_date",
+  "to_date",
+  "supplier",
+  "debit_to",
+  "search_queries",
+  "get_bank_transactions",
+  "bank_transactions",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "payment_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Payment Type",
+   "options": "Payment Entry\nJournal Entry",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.payment_type==\"Payment Entry\"",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "mandatory_depends_on": "eval:doc.payment_type==\"Payment Entry\"",
+   "options": "Supplier"
+  },
+  {
+   "depends_on": "eval:doc.payment_type==\"Journal Entry\"",
+   "fieldname": "debit_to",
+   "fieldtype": "Link",
+   "label": "Debit to",
+   "mandatory_depends_on": "eval:doc.payment_type==\"Journal Entry\"",
+   "options": "Account"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Bulk Payments",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "search_queries",
+   "fieldtype": "Table",
+   "label": "Search Queries",
+   "options": "Search Queries",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bank_transactions",
+   "fieldtype": "Table",
+   "label": "Bank Transactions",
+   "options": "Bulk Transactions"
+  },
+  {
+   "fieldname": "get_bank_transactions",
+   "fieldtype": "Button",
+   "label": "Get Bank Transactions"
+  },
+  {
+   "fieldname": "bank_account",
+   "fieldtype": "Link",
+   "label": "Bank Account",
+   "options": "Bank Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "From Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
+  },
+  {
+   "fetch_from": "bank_account.account",
+   "fetch_if_empty": 1,
+   "fieldname": "paid_from",
+   "fieldtype": "Link",
+   "label": "Account Paid From",
+   "options": "Account",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-06-10 17:36:34.769108",
+ "modified_by": "Administrator",
+ "module": "Element Customizations",
+ "name": "Bulk Payments",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

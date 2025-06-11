@@ -4,6 +4,7 @@
 import frappe
 from frappe.model.document import Document
 import json
+from frappe import _
 
 class BulkPayments(Document):
 	def before_submit(self):
@@ -90,6 +91,21 @@ class BulkPayments(Document):
 					# bt.remove_payment_entry(bank_transaction.journal_entry)
 					# bt.save()
 	
+@frappe.whitelist()
+def queue_submit(docname):
+	"""
+	Queue the submission of a Bulk Payments document.
+	"""
+	doc = frappe.get_doc("Bulk Payments", docname)
+	if doc.docstatus == 0:
+		doc.queue_action(
+			action="submit",
+			queue="long",
+			timeout=600
+		)
+		frappe.msgprint(_("Document {0} has been queued for submission.").format(docname))
+	else:
+		frappe.throw(_("Document {0} is already submitted.").format(docname))
 @frappe.whitelist()
 def get_bank_transactions(bank_account, from_date, to_date,search_queries):
 	"""

@@ -2,10 +2,22 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Bulk Payments', {
-	// refresh: function(frm) {
-
-	// },
-	get_bank_transactions: function(frm) {
+	refresh: function (frm) {
+		if (frm.doc.docstatus === 0) {
+			frm.add_custom_button(__('Queue Submit'), function () {
+				frappe.call({
+					method: 'element_customizations.element_customizations.doctype.bulk_payments.bulk_payments.queue_submit',
+					args: {
+						docname: frm.doc.name
+					},
+					callback: function (r) {
+						return false;
+					}
+				});
+			})
+		}
+	},
+	get_bank_transactions: function (frm) {
 		if (frm.doc.bank_account) {
 			frappe.call({
 				method: 'element_customizations.element_customizations.doctype.bulk_payments.bulk_payments.get_bank_transactions',
@@ -15,10 +27,10 @@ frappe.ui.form.on('Bulk Payments', {
 					to_date: frm.doc.to_date,
 					search_queries: frm.doc.search_queries
 				},
-				callback: function(r) {
+				callback: function (r) {
 					if (r.message && Array.isArray(r.message)) {
 						frm.clear_table('bank_transactions');
-						r.message.forEach(function(row) {
+						r.message.forEach(function (row) {
 							frm.add_child('bank_transactions', {
 								bank_transaction: row.name,
 								date: row.date,
@@ -33,6 +45,6 @@ frappe.ui.form.on('Bulk Payments', {
 		} else {
 			frappe.msgprint(__('Please select a bank account.'));
 		}
-		
+
 	}
 });
